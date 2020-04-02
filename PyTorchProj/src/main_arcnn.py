@@ -107,7 +107,6 @@ if opt.pre_train:
     print('===> Working directory :', os.getcwd())
     print('===> Loading pretrained model from latest checkpoint')
     model = torch.load(opt.pre_train)
-    logging.info('experiment in {}'.format(nowTime))
     best_psnr = 33.0
     for epoch in range(1, opt.nEpochs + 1):
         train(epoch)
