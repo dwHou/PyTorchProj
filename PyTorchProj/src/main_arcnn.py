@@ -21,6 +21,7 @@ logging.basicConfig(filename='./LOG/' + 'experiment' + '.log', level=logging.INF
 opt = opt
 print(opt)
 
+os.environ['CUDA_VISIBLE_DEVICES'] = '0' # '0,1,2'
 if opt.cuda and not torch.cuda.is_available():
     raise Exception("No GPU found, please run without --cuda")
 
