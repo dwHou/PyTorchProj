@@ -1,0 +1,68 @@
+INFO:root:experiment in 2020-04-02 15:48:15
+INFO:root:===> in 1th epochs
+INFO:root:===> Avg. PSNR: 20.9875 dB
+INFO:root:===> in 2th epochs
+INFO:root:===> Avg. PSNR: 23.3021 dB
+INFO:root:===> in 3th epochs
+INFO:root:===> Avg. PSNR: 25.9230 dB
+INFO:root:===> in 4th epochs
+INFO:root:===> Avg. PSNR: 27.2020 dB
+INFO:root:===> in 5th epochs
+INFO:root:===> Avg. PSNR: 27.7738 dB
+INFO:root:===> in 6th epochs
+INFO:root:===> Avg. PSNR: 29.0958 dB
+INFO:root:===> in 7th epochs
+INFO:root:===> Avg. PSNR: 29.4882 dB
+INFO:root:===> in 8th epochs
+INFO:root:===> Avg. PSNR: 30.3097 dB
+INFO:root:===> in 9th epochs
+INFO:root:===> Avg. PSNR: 30.3051 dB
+INFO:root:===> in 10th epochs
+INFO:root:===> Avg. PSNR: 31.1130 dB
+INFO:root:===> in 11th epochs
+INFO:root:===> Avg. PSNR: 30.3820 dB
+INFO:root:===> in 12th epochs
+INFO:root:===> Avg. PSNR: 31.2894 dB
+INFO:root:===> in 13th epochs
+INFO:root:===> Avg. PSNR: 31.3579 dB
+INFO:root:===> in 14th epochs
+INFO:root:===> Avg. PSNR: 31.4194 dB
+INFO:root:===> in 15th epochs
+INFO:root:===> Avg. PSNR: 31.4655 dB
+INFO:root:===> in 16th epochs
+INFO:root:===> Avg. PSNR: 31.3543 dB
+INFO:root:===> in 17th epochs
+INFO:root:===> Avg. PSNR: 31.9068 dB
+INFO:root:===> in 18th epochs
+INFO:root:===> Avg. PSNR: 31.5662 dB
+INFO:root:===> in 19th epochs
+INFO:root:===> Avg. PSNR: 33.0117 dB
+INFO:root:===> save the best model: reach 33.01dB PSNR
+INFO:root:===> in 20th epochs
+INFO:root:===> Avg. PSNR: 31.9915 dB
+INFO:root:===> in 21th epochs
+INFO:root:===> Avg. PSNR: 31.9193 dB
+INFO:root:===> in 22th epochs
+INFO:root:===> Avg. PSNR: 33.0907 dB
+INFO:root:===> save the best model: reach 33.09dB PSNR
+INFO:root:===> in 23th epochs
+INFO:root:===> Avg. PSNR: 32.4729 dB
+INFO:root:===> in 24th epochs
+INFO:root:===> Avg. PSNR: 31.8958 dB
+INFO:root:===> in 25th epochs
+INFO:root:===> Avg. PSNR: 32.1082 dB
+INFO:root:===> in 26th epochs
+INFO:root:===> Avg. PSNR: 32.5502 dB
+INFO:root:===> in 27th epochs
+INFO:root:===> Avg. PSNR: 32.7391 dB
+INFO:root:===> in 28th epochs
+INFO:root:===> Avg. PSNR: 34.1586 dB
+INFO:root:===> save the best model: reach 34.16dB PSNR
+INFO:root:===> in 29th epochs
+INFO:root:===> Avg. PSNR: 32.4848 dB
+INFO:root:===> in 30th epochs
+INFO:root:===> Avg. PSNR: 33.7938 dB
+INFO:root:===> in 31th epochs
+INFO:root:===> Avg. PSNR: 32.7666 dB
+INFO:root:===> in 32th epochs
+INFO:root:===> Avg. PSNR: 32.3359 dB
