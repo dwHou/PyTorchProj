@@ -121,6 +121,7 @@ if opt.pre_train:
 
 else:
     best_psnr = 33.0
+    # train ; test ; checkpoint
     for epoch in range(1, opt.nEpochs + 1):
         train(epoch)
         logging.info('===> in {}th epochs'.format(epoch))
