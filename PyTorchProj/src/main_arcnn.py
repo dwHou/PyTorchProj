@@ -39,6 +39,11 @@ testing_data_loader = DataLoader(dataset=test_set, num_workers=opt.threads, batc
 print('===> Building model')
 model = ARCNN().to(device)
 # apply函数会递归地搜索网络内的所有module并把参数表示的函数应用到所有的module上。
+if torch.cuda.device_count() > 1:
+    print("Let's use", torch.cuda.device_count(), "GPUs!")
+    # 就这一行
+    model = nn.DataParallel(model)
+    
 model.apply(weights_init)
 
 criterion = nn.MSELoss()
