@@ -99,9 +99,11 @@ def checkpoint(epoch):
     model_out_path = os.path.join('.', 'experiment', model_out_path)
     model_latest_path = os.path.join('.', 'experiment', 'latestcheckpoint', model_latest_path)
     if epoch % 5 == 0:
-        torch.save(model, model_out_path)
+        # torch.save(model, model_out_path)
+        torch.save(model.state_dict(), model_out_path)
         print('Checkpoint saved to {}'.format(model_out_path))
-    torch.save(model, model_latest_path)
+    # torch.save(model, model_latest_path)
+    torch.save(model.state_dict(), model_latest_path)
     print('Checkpoint saved to {}'.format(model_latest_path))
 
 
@@ -112,7 +114,20 @@ logging.info('experiment in {}'.format(nowTime))
 if opt.pre_train:
     print('===> Working directory :', os.getcwd())
     print('===> Loading pretrained model from latest checkpoint')
-    model = torch.load(opt.pre_train)
+    # model = torch.load(opt.pre_train)
+    model.load_state_dict(torch.load(opt.pre_train))
+    # 如果是部分加载
+    ‘’‘
+    # 1. 利用字典的 update 方法进行加载
+    Checkpoint = torch.load(Path)
+    model_dict = model.state_dict()
+    model_dict.update(Checkpoint)
+    model.load_state_dict(model_dict)
+    # 2. 利用 load_state_dict() 的 strict 参数进行部分加载
+    model.load_state_dict(torch.load(PATH), strict=False)
+    ’‘’
+    
+    
     best_psnr = 33.0
     for epoch in range(1, opt.nEpochs + 1):
         train(epoch)
@@ -122,7 +137,8 @@ if opt.pre_train:
             best_psnr = psnr
             model_best_path = os.path.join('.', 'experiment', 'model_best.pth')
             logging.info('===> save the best model: reach {:.2f}dB PSNR'.format(best_psnr))
-            torch.save(model, model_best_path)
+            # torch.save(model, model_best_path)
+            torch.save(model.state_dict(),PATH)
         checkpoint(epoch)
 
 else:
@@ -136,5 +152,6 @@ else:
             best_psnr = psnr
             model_best_path = os.path.join('.', 'experiment', 'model_best.pth')
             logging.info('===> save the best model: reach {:.2f}dB PSNR'.format(best_psnr))
-            torch.save(model, model_best_path)
+            # torch.save(model, model_best_path)
+            torch.save(model.state_dict(), model_best_path)
         checkpoint(epoch)
