@@ -43,35 +43,6 @@ optimizer = optim.SGD(
  
 
 2、各层采用不同学习率方法
-
-######### 模型定义 #########
-class MyModel(nn.Module):
-    def __init__(self, feat_dim):   # input the dim of output fea-map of Resnet:
-        super(MyModel, self).__init__()
-        
-        BackBone = models.resnet50(pretrained=True)
-        
-        add_block = []
-        add_block += [nn.Linear(2048, 512)]
-        add_block += [nn.LeakyReLU(inplace=True)]
-        add_block = nn.Sequential(*add_block)
-        add_block.apply(weights_init_xavier)
- 
-        self.BackBone = BackBone
-        self.add_block = add_block
- 
- 
-    def forward(self, input):   # input is 2048!
- 
-        x = self.BackBone(input)
-        x = self.add_block(x)
- 
-        return x
-##############################
- 
-# 模型准备
-model = MyModel()
- 
 # 不同层学习率设置
  
 ignored_params = list(map(id, model.add_block.parameters()))
@@ -180,7 +151,3 @@ for epoch in range(start_epoch, args.epochs):
     adjust_lr(epoch)   # 每epoch更新一次。
     model.train(True)  # Set model to training mode
     ....
- 
-————————————————
-版权声明：本文为CSDN博主「小小的行者」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/jdzwanghao/article/details/83239111
