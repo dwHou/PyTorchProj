@@ -58,7 +58,7 @@ class Demo(data.Dataset):
             line = line.rstrip()
             words = line.split()
             pairs.append((words[0], words[1]))
-            self.pairs = pairs
+        self.pairs = pairs
 
     def __getitem__(self, index):
         # input, target = self.pairs[index]
