@@ -83,7 +83,9 @@ def test():
 
             prediction = model(input)
             mse = criterion(prediction, target)
-            psnr = 10 * log10(1 / (mse.item() / 3))  # 就是1，因为还是tensor,0~1。rgb三通道，mse除3。
+            psnr = 10 * log10(1 / mse.item())  
+            # 就是1，因为还是tensor,0~1。然后不要因为rgb三通道，mse除3，mse的计算就是整个平均下来的均方误差。
+            # 你如果÷3，最后就会误差 RealPSNR + 10*log10(3)
             avg_psnr += psnr
 
     print('===> Avg. PSNR: {:.4f} dB'.format(avg_psnr / len(testing_data_loader)))
