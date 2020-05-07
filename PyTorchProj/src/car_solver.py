@@ -27,7 +27,8 @@ if opt.cuda:
     model = model.cuda()
     input = input.cuda()
 
-out = model(input)
+with torch.no_grad():
+    out = model(input)
 #print(out.shape)
 out = torch.squeeze(out, 0)
 #print(out.shape)
