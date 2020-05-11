@@ -171,7 +171,8 @@ torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max, eta_min=0, last_epo
              )
         validate(...)        
         scheduler.step()
-        print('T is {}, and lr is {}'.format(scheduler.last_epoch, l.get_lr()[0]))
+        print('T is {}, and lr is {}'.format(scheduler.last_epoch, scheduler.get_lr[0]))
+                                             # optim.param_groups[0]['lr']))
 
 # T_max(int)- 一次学习率周期的迭代次数，即 T_max 个 epoch 之后重新设置学习率。
 # eta_min(float)- 最小学习率，即在一个周期中，学习率最小会下降到 eta_min，默认值为 0。
