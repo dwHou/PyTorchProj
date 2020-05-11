@@ -161,7 +161,8 @@ torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max, eta_min=0, last_epo
 使用实例:
     import torch.optim as optim
     optimizer = optim.Adam(model.parameters(), lr=opt.lr)
-    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max, eta_min=0, last_epoch=-1)
+    # cheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max, eta_min=0, last_epoch=-1)
+    scheduler = optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=10, T_mult=1, eta_min=0, last_epoch=-1)
     
     for epoch in range(100):               
         train(...
