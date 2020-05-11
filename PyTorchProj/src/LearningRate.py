@@ -151,3 +151,13 @@ for epoch in range(start_epoch, args.epochs):
     adjust_lr(epoch)   # 每epoch更新一次。
     model.train(True)  # Set model to training mode
     ....
+    
+    
+4、学习率退火
+https://blog.csdn.net/shanglianlm/article/details/85143614
+    
+torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max, eta_min=0, last_epoch=-1)
+
+# T_max(int)- 一次学习率周期的迭代次数，即 T_max 个 epoch 之后重新设置学习率。
+# eta_min(float)- 最小学习率，即在一个周期中，学习率最小会下降到 eta_min，默认值为 0。
+
