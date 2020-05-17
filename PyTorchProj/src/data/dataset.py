@@ -59,6 +59,7 @@ class Demo(data.Dataset):
             words = line.split()
             pairs.append((words[0], words[1]))
         self.pairs = pairs
+        fh.close()
 
     def __getitem__(self, index):
         # input, target = self.pairs[index]
