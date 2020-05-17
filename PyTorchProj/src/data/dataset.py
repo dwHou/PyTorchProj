@@ -52,14 +52,15 @@ class Demo_lmdb(data.Dataset):
 class Demo(data.Dataset):
     def __init__(self, txt_path):
         super(Demo, self).__init__()
-        fh = open(txt_path, 'r')
-        pairs = []
-        for line in fh:
-            line = line.rstrip()
-            words = line.split()
-            pairs.append((words[0], words[1]))
-        self.pairs = pairs
-        fh.close()
+        # fh = open(txt_path, 'r')
+        with open(txt_path, 'r') as fh:
+            pairs = []
+            for line in fh:
+                line = line.rstrip()
+                words = line.split()
+                pairs.append((words[0], words[1]))
+            self.pairs = pairs
+        # fh.close()
 
     def __getitem__(self, index):
         # input, target = self.pairs[index]
