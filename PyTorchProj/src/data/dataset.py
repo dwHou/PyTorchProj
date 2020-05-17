@@ -87,3 +87,9 @@ class Demo(data.Dataset):
         np_tar = np.asarray(img_tar)
 
         return np_in, np_tar
+
+# 读文件的指定行数可以用    
+from itertools import islice
+f=open("pyhpd.txt")
+for a in islice(f,2,6):
+    print(a)
