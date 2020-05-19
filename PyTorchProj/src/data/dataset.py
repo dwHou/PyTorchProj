@@ -93,3 +93,9 @@ from itertools import islice
 f=open("pyhpd.txt")
 for a in islice(f,2,6):
     print(a)
+
+    islice(iterable, [start, ] stop [, step]):
+创建一个迭代器，生成项的方式类似于切片返回值： iterable[start : stop : step]，将跳过前start个项，迭代在stop所指定的位置停止，step指定用于跳过项的步幅。与切片不同，负值不会用于任何start，stop和step，如果省略了start，迭代将从0开始，如果省略了step，步幅将采用
+————————————————
+版权声明：本文为CSDN博主「wzg2016」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/strive_for_future/article/details/95388081
