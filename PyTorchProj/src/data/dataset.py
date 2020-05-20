@@ -21,17 +21,22 @@ from option import opt
 #     return y
 
 class Demo_lmdb(data.Dataset):
-    def __init__(self, db_path):
+    def __init__(self, db_path, flag):
         super(Demo_lmdb, self).__init__()
         env = lmdb.open(db_path)
         txn = env.begin()
         self.txn = txn
+        self.flag = flag
 
     def __getitem__(self, index):
         self.index = index
         np_in, np_tar = self._load_lmdb(self.index)
-        self.patch_size = opt.patchSize
-        patch_in, patch_tar = common.get_patch(np_in, np_tar, self.patch_size)
+        
+        if self.flag == train:
+            self.patch_size = opt.patchSize
+            patch_in, patch_tar = common.get_patch(np_in, np_tar, self.patch_size)
+        else:
+            patch_in, patch_tar = np_in, np_tar
 
         patch_in, patch_tar = common.np2Tensor([patch_in, patch_tar], opt.rgb_range)
 
@@ -50,7 +55,7 @@ class Demo_lmdb(data.Dataset):
 
 
 class Demo(data.Dataset):
-    def __init__(self, txt_path):
+    def __init__(self, txt_path, flag):
         super(Demo, self).__init__()
         # fh = open(txt_path, 'r')
         with open(txt_path, 'r') as fh:
@@ -61,16 +66,20 @@ class Demo(data.Dataset):
                 pairs.append((words[0], words[1]))
             self.pairs = pairs
         # fh.close()
-
+        self.flag = flag
+        
     def __getitem__(self, index):
         # input, target = self.pairs[index]
         # img_in = Image.open(input).convert('RGB')
         # img_tar = Image.open(target).convert('RGB')
         self.index = index
         np_in, np_tar = self._load_file(index)
-        self.patch_size = opt.patchSize
-        patch_in, patch_tar = common.get_patch(np_in, np_tar, self.patch_size)
-
+        
+        if self.flag == 'train':
+            self.patch_size = opt.patchSize
+            patch_in, patch_tar = common.get_patch(np_in, np_tar, self.patch_size)
+        else:
+            patch_in, patch_tar = np_in, np_tar
         patch_in, patch_tar = common.np2Tensor([patch_in, patch_tar], opt.rgb_range)
 
         return patch_in, patch_tar
