@@ -24,11 +24,11 @@ def get_training_set():
     #train_txt = '/Volumes/Samsung_T5/Datasets/youkuCAR/train.txt'
     #return Demo(train_txt)
     train_db = '/Applications/Programming/Dataset/VSR/youkudataset/Demo_lmdb/demo_train_lmdb'
-    return Demo_lmdb(train_db)
+    return Demo_lmdb(train_db, 'train')
 
 def get_test_set():
     #val_txt = '/Applications/Programming/Dataset/VSR/youkudataset/Demo/valid.txt'
     #val_txt = '/Volumes/Samsung_T5/Datasets/youkuCAR/valid.txt'
     #return Demo(val_txt)
     val_db = '/Applications/Programming/Dataset/VSR/youkudataset/Demo_lmdb/demo_val_lmdb'
-    return Demo_lmdb(val_db)
+    return Demo_lmdb(val_db, 'test')
