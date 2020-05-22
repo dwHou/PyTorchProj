@@ -32,10 +32,10 @@ class Demo_lmdb(data.Dataset):
         self.index = index
         np_in, np_tar = self._load_lmdb(self.index)
         
-        if self.flag == train:
+        if self.flag == 'train':
             self.patch_size = opt.patchSize
             patch_in, patch_tar = common.get_patch(np_in, np_tar, self.patch_size)
-        else:
+        elif self.flag == 'test':
             patch_in, patch_tar = np_in, np_tar
 
         patch_in, patch_tar = common.np2Tensor([patch_in, patch_tar], opt.rgb_range)
