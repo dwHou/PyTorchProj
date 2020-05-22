@@ -6,7 +6,7 @@ import argparse
 parser = argparse.ArgumentParser(description='CAR ConvLSTM baseline')
 parser.add_argument('--crf', type=int, required=True, help='compression factor crf')
 parser.add_argument('--batchSize', type=int, default=32, help='training batch size')
-parser.add_argument('--testBatchSize', type=int, default=16, help='testing batch size')
+parser.add_argument('--testBatchSize', type=int, default=1, help='testing batch size')
 parser.add_argument('--nEpochs', type=int, default=60, help='number of epochs to train for')
 parser.add_argument('--lr', type=float, default=5e-4, help='learning rate. default=0.01')
 parser.add_argument('--cuda', action='store_true', help='use cuda?')
