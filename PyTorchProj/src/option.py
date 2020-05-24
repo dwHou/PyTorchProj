@@ -16,7 +16,6 @@ parser.add_argument('--patchSize', type=int, default=96, help='CenterCrop size')
 parser.add_argument('--rgb_range', type=int, default=255, help='maximum value of RGB')
 parser.add_argument('--pre_train', type=str, default='', help='pre-trained model directory')
 parser.add_argument('--step', type=int, default=20, help='lstm指定多长的序列能够构成一个上下文相关的序列')
-parser.add_argument('--dataset', type=str, default='', help='指定数据集路径，方便一点。虽然暂时没用它')
 parser.add_argument('--data_range', type=str, default='0-100/100-160', help='train/test data range')
 
 
