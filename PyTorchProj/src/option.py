@@ -31,3 +31,7 @@ look at this issue: https://github.com/pytorch/examples/issues/522
 compute the PSNR for each image in the batch separately.
 YYY also suggested that usually do not set test batchsize, verification is very fast.
 
+3. validation
+Do not shuffle, do not randomly crop, the verification set in practical applications in industry can be relatively small.
+Reproducibility.
+ 
