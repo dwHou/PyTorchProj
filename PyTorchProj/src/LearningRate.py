@@ -185,3 +185,7 @@ https://www.cnblogs.com/wuliytTaotao/p/11101652.html
     Adam和学习率衰减（learning rate decay）
 http://spytensor.com/index.php/archives/32/    
     pytorch 动态调整学习率
+
+# 配合这个还蛮好的   
+CLASS torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, 
+      patience=10, verbose=False, threshold=0.0001, threshold_mode='rel', cooldown=0, min_lr=0, eps=1e-08)
