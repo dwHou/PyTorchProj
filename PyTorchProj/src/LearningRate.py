@@ -177,3 +177,11 @@ torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max, eta_min=0, last_epo
 # T_max(int)- 一次学习率周期的迭代次数，即 T_max 个 epoch 之后重新设置学习率。
 # eta_min(float)- 最小学习率，即在一个周期中，学习率最小会下降到 eta_min，默认值为 0。
 
+
+
+5、 Adam优化器，还需要学习率退火么？
+
+https://www.cnblogs.com/wuliytTaotao/p/11101652.html
+    Adam和学习率衰减（learning rate decay）
+http://spytensor.com/index.php/archives/32/    
+    pytorch 动态调整学习率
