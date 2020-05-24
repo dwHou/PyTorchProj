@@ -21,3 +21,14 @@ parser.add_argument('--data_range', type=str, default='0-100/100-160', help='tra
 
 
 opt = parser.parse_args()
+
+# -----annotation-----
+1. --data_range
+data_range = [r.split('-') for r in opt.data_range.split('/')] 
+then use data_range[0][0]~data_range[0][1], data_range[1][0]~data_range[1][1] to divide the dataset.
+
+2. --testBatchSize
+look at this issue: https://github.com/pytorch/examples/issues/522
+compute the PSNR for each image in the batch separately.
+YYY also suggested that usually do not set test batchsize, verification is very fast.
+
