@@ -49,6 +49,7 @@ if torch.cuda.device_count() > 1:
 if not (opt.pre_train is None):
         print('load model from %s ...' % opt.pre_train)
         # 获得模型参数
+        # 如果保存的model,但由于GPU数目不同等等，想灵活地加载参数model.module.state_dict()。
         model_dict = torch.load(opt.pre_train).module.state_dict()
         # 载入参数
         model.module.load_state_dict(model_dict)
