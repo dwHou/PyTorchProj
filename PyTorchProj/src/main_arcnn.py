@@ -44,7 +44,28 @@ if torch.cuda.device_count() > 1:
     # 就这一行
     model = nn.DataParallel(model)
     
-model.apply(weights_init)
+if not (opt.pre_train is None):
+        print('load model from %s ...' % opt.pre_train)
+        # 获得模型参数
+        model_dict = torch.load(opt.pre_train).module.state_dict()
+        # 载入参数
+        model.module.load_state_dict(model_dict)
+        print('success!')
+        
+        # 相比model.load_state_dict(torch.load(opt.pre_train))，上面的方法可以解决GPU数目不匹配的模型加载。
+        # 如果是部分加载
+        ‘’‘
+        # 1. 利用字典的 update 方法进行加载
+        Checkpoint = torch.load(Path)
+        model_dict = model.state_dict()
+        model_dict.update(Checkpoint)
+        model.load_state_dict(model_dict)
+        # 2. 利用 load_state_dict() 的 strict 参数进行部分加载
+        model.load_state_dict(torch.load(PATH), strict=False)
+        ’‘’
+    else:    
+        # apply函数会递归地搜索网络内的所有module并把参数表示的函数应用到所有的module上。
+        model.apply(weights_init)
 
 criterion = nn.MSELoss()
 
@@ -113,47 +134,16 @@ def checkpoint(epoch):
 nowTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 logging.info('experiment in {}'.format(nowTime))
 
-if opt.pre_train:
-    print('===> Working directory :', os.getcwd())
-    print('===> Loading pretrained model from latest checkpoint')
-    # model = torch.load(opt.pre_train)
-    model.load_state_dict(torch.load(opt.pre_train))
-    # 如果是部分加载
-    ‘’‘
-    # 1. 利用字典的 update 方法进行加载
-    Checkpoint = torch.load(Path)
-    model_dict = model.state_dict()
-    model_dict.update(Checkpoint)
-    model.load_state_dict(model_dict)
-    # 2. 利用 load_state_dict() 的 strict 参数进行部分加载
-    model.load_state_dict(torch.load(PATH), strict=False)
-    ’‘’
-    
-    
-    best_psnr = 33.0
-    for epoch in range(1, opt.nEpochs + 1):
-        train(epoch)
-        logging.info('===> in {}th epochs'.format(epoch))
-        psnr = test()
-        if psnr > best_psnr:
-            best_psnr = psnr
-            model_best_path = os.path.join('.', 'experiment', 'model_best.pth')
-            logging.info('===> save the best model: reach {:.2f}dB PSNR'.format(best_psnr))
-            # torch.save(model, model_best_path)
-            torch.save(model.state_dict(),PATH)
-        checkpoint(epoch)
-
-else:
-    best_psnr = 33.0
-    # train ; test ; checkpoint
-    for epoch in range(1, opt.nEpochs + 1):
-        train(epoch)
-        logging.info('===> in {}th epochs'.format(epoch))
-        psnr = test()
-        if psnr > best_psnr:
-            best_psnr = psnr
-            model_best_path = os.path.join('.', 'experiment', 'model_best.pth')
-            logging.info('===> save the best model: reach {:.2f}dB PSNR'.format(best_psnr))
-            # torch.save(model, model_best_path)
-            torch.save(model.state_dict(), model_best_path)
-        checkpoint(epoch)
+best_psnr = 33.0
+# train ; test ; checkpoint
+for epoch in range(1, opt.nEpochs + 1):
+    train(epoch)
+    logging.info('===> in {}th epochs'.format(epoch))
+    psnr = test()
+    if psnr > best_psnr:
+        best_psnr = psnr
+        model_best_path = os.path.join('.', 'experiment', 'model_best.pth')
+        logging.info('===> save the best model: reach {:.2f}dB PSNR'.format(best_psnr))
+        # torch.save(model, model_best_path)
+        torch.save(model.state_dict(), model_best_path)
+    checkpoint(epoch)
