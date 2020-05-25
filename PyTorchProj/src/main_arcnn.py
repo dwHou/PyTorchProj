@@ -15,8 +15,10 @@ from data.data import get_training_set, get_test_set
 from option import opt
 from tqdm import tqdm
 import logging
+from tensorboardX import SummaryWriter
 
 logging.basicConfig(filename='./LOG/' + 'experiment' + '.log', level=logging.INFO)
+tb_logger = SummaryWriter('./LOG/')
 
 opt = opt
 print(opt)
@@ -91,7 +93,9 @@ def train(epoch):
         epoch_loss += loss.item()
         loss.backward()
         optimizer.step()
-
+        
+        niter = epoch * len(training_data_loader) + iteration
+        tb_logger.add_scalars('CAR_Train_loss', {'train_loss': loss.data.item()}, niter)    
         print('===> Epoch[{}]({}/{}): Loss: {:.6f}'.format(epoch, iteration, len(training_data_loader), loss.item()))
     print('===> Epoch {} Complete: Avg. Loss: {:.6f}'.format(epoch, epoch_loss / len(training_data_loader)))
 
