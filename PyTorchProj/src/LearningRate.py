@@ -189,3 +189,4 @@ http://spytensor.com/index.php/archives/32/
 # 配合这个还蛮好的   
 CLASS torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, 
       patience=10, verbose=False, threshold=0.0001, threshold_mode='rel', cooldown=0, min_lr=0, eps=1e-08)
+patience指的是连续多少回没有达到、更新已经达到的min或max。
